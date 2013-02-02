@@ -1,0 +1,14 @@
+CherryPy==3.2.2
+argparse==1.2.1
+caldav==0.1.12
+coverage==3.6
+httplib2==0.7.7
+lxml==3.1beta1
+nose==1.2.1
+python-dateutil==2.1
+pytz==2012j
+six==1.2.0
+twilio==3.4.3
+unittest2==0.5.1
+vobject==0.8.1c
+wsgiref==0.1.2
