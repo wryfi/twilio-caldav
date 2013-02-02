@@ -18,7 +18,7 @@ class Root(object):
     return str(response)
 
   @cherrypy.expose
-  def txt(self, **params):
+  def sms(self, **params):
     response = twilio.twiml.Response()
     response.sms(sms_reply)
     if 'Body' in params.keys():

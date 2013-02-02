@@ -35,6 +35,7 @@ If there are no calendar events for the day, the messages are forwarded to `defa
 1. create `settings.py` file in root of checkout (see below)
 1. run natively with cherrypy: `python twilio-caldav.py`, or
 1. run with wsgi using `twilio-caldav.wsgi` and your favorite webserver
+1. set your twilio number to use `<twilio-caldav_url>/voice` (GET) for voice the voice URL, and `<twilio-caldav_url/sms>` (POST) for the sms URL.
 
 ## configuration
 
