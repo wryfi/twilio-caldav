@@ -6,7 +6,7 @@ This is a dead simple [cherrypy](http://www.cherrypy.org) app that uses the [cal
 
 You need a caldav calendar. I've tested with Zimbra. The code uses the ical 'summary' field (the event name in Zimbra or Google calendar) for a contact name and the ical 'location' field for an [E.164-formatted]( http://www.twilio.com/help/faq/phone-numbers/how-do-i-format-phone-numbers-to-work-internationally) phone number.
 
-The code first polls your calendar for today's events. It looks first for a any events matching the current time, then for any all-day events matching the current day, using the first it finds. It then extracts the name of the event and the phone number from the location field. It then forwards calls and text messages to the number from the location field, after replying with `sms_reply` or `voice_reply` as appropriate.
+The code first polls your calendar for today's events. It looks first for any events matching the current time, then for any all-day events matching the current day, using the first it finds. It then extracts the name of the event and the phone number from the location field. It then forwards calls and text messages to the number from the location field, after replying with `sms_reply` or `voice_reply` as appropriate.
 
 If there are no calendar events for the day, the messages are forwarded to `default_phone`.
 
