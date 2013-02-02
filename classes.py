@@ -22,8 +22,11 @@ class Root(object):
     response = twilio.twiml.Response()
     response.sms(sms_reply)
     if 'Body' in params.keys():
-      sms_body = 'From %s:  ' % params['From']
-      sms_body += params['Body']
+      if 'From' in params.keys():
+        sms_body = 'FWD From %s : ' % params['From']
+        sms_body += params['Body']
+      else:
+        sms_body = params['Body']
       client = TwilioRestClient(twilio_account_ssid, twilio_auth_token)
       message = client.sms.messages.create(to=get_caldav_contact()[1], from_=twilio_phone_number, body=sms_body)
     return str(response) 
