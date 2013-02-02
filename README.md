@@ -34,8 +34,8 @@ If there are no calendar events for the day, the messages are forwarded to `defa
 1. install requirements: `pip install -r requirements.txt`
 1. create `settings.py` file in root of checkout (see below)
 1. run natively with cherrypy: `python twilio-caldav.py`, or
-1. run with wsgi using `twilio-caldav.wsgi` and your favorite webserver
-1. set your twilio number to use `<twilio-caldav_url>/voice` (GET) for voice the voice URL, and `<twilio-caldav_url/sms>` (POST) for the sms URL.
+1. run with wsgi using `twilio-caldav.wsgi` and your favorite webserver (e.g. apache or nginx)
+1. set your twilio number to use `<twilio-caldav_url>/voice` (GET) for voice the voice URL, and `<twilio-caldav_url>/sms` (POST) for the sms URL.
 
 ## configuration
 
@@ -46,10 +46,10 @@ Create a file called `settings.py` in the root of your clone. It must contain th
     # the url to your calendar. For zimbra, it looks something like:
     caldav_url = 'https://<username>:<password>@<zimbrahost>/dav/<zimbraemail>/<calendarname>'
     # the phone number to return when there are no events on the calendar for today
-    default_phone = '+18005551234'
+    default_phone = '+14155554321'
     # the name to return when there are no events on the calendar
     default_name = 'Popeye'
-    # the twilio phone number to forward sms messages from
+    # the twilio phone number to forward sms messages from; must be a valid phone number from your twilio account
     twilio_phone_number = '+14155551234'
     # your twilio account sid from twilio.com
     twilio_account_ssid = 'xxxxxxxxxxxxxxxxxxxxxxxxxx'
