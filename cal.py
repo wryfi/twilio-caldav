@@ -37,12 +37,9 @@ def get_caldav_contact():
   if len(events['partday']) > 0:
     for event in events['partday']:
       if event['start'] <= now and now < event['end']:
-        contact = (event['name'], event['phone'])
+        return contact = (event['name'], event['phone'])
 
-  if contact == None and len(events['allday']) > 0:
-    contact = (events['allday'][0]['name'], events['allday'][0]['phone'])
+  if len(events['allday']) > 0:
+    return contact = (events['allday'][0]['name'], events['allday'][0]['phone'])
 
-  if contact == None:
-    contact = (default_name, default_phone)
-   
-  return contact
+  return (default_name, default_phone)
