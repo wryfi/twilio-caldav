@@ -4,9 +4,25 @@ This is a dead simple [cherrypy](http://www.cherrypy.org) app that uses the [cal
 
 ## summary/usage
 
-You need a caldav calendar. I've tested with Zimbra. The code uses the ical 'summary' field (the event name in Zimbra or Google calendar) for a contact name and the ical 'location' field for an [E.164-formatted]( http://www.twilio.com/help/faq/phone-numbers/how-do-i-format-phone-numbers-to-work-internationally) phone number.
+You need a caldav calendar. I've tested with Zimbra. The code uses the ical 'summary' field (the event name in Zimbra or
+Google calendar) for a contact name and the ical 'location' field for an [E.164-formatted](
+http://www.twilio.com/help/faq/phone-numbers/how-do-i-format-phone-numbers-to-work-internationally) phone number.
 
-The code first polls your calendar for today's events. It looks first for any events matching the current time, then for any all-day events matching the current day, using the first it finds. It then extracts the name of the event and the phone number from the location field. It then forwards calls and text messages to the number from the location field, after replying with `sms_reply` or `voice_reply` as appropriate.
+Set up a calendar with events. They can be one-time events, all-day events, or recurring events. The name of the event must be set (to anything), 
+and the location field of the event must contain an [E.164-formatted]( http://www.twilio.com/help/faq/phone-numbers/how-do-i-format-phone-numbers-to-work-internationally) phone number. 
+
+There is currently no support for concurrent events. If there are two events during the same date and time, results may vary. 
+
+There is, however, support for overlapping all-day and part-day events. So Bob could have an all-day event forwarding to
+his number, with an 1100-1300 event forwarding to Susie, both on the same day. From 1100-1300, the call will go to
+Susie, and the rest of the day, the call will go to Bob.
+
+But *avoid* creating events that overlap in time, (e.g. 1100-1300 and 1200-1400) and overlapping all-day events.
+
+The code first polls your calendar for today's events. It looks first for any events matching the current time, then for
+any all-day events matching the current day, using the first match it finds. From the matching event, it extracts the name of the event and
+the phone number (from the location field). It then forwards calls and text messages to the number from the location
+field, after replying with `sms_reply` or `voice_reply` as appropriate.
 
 If there are no calendar events for the day, the messages are forwarded to `default_phone`.
 
