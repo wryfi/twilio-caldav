@@ -1,7 +1,7 @@
 import caldav
-from datetime import date, datetime
+from datetime import date, datetime, time, timedelta
 import pytz
-from settings import caldav_url as url, default_phone, default_name
+from settings import caldav_url as url, default_phone, default_name, timezone
 
 def get_caldav_contact():
   '''
@@ -17,14 +17,15 @@ def get_caldav_contact():
   calendars = principal.calendars()
   calendar = calendars[0]
   today = date.today()
-  now = pytz.UTC.localize(datetime.utcnow())
+  tomorrow = today + timedelta(hours=24)
+  now = pytz.timezone(timezone).localize(datetime.now())
   events = { 'allday' : [], 'partday': [] }
 
-  for event in calendar.date_search(today):
+  for event in calendar.date_search(today, tomorrow):
     event.load()
     if type(event.instance.vevent.dtstart.value) == datetime:
-      start = event.instance.vevent.dtstart.value.astimezone(pytz.UTC)
-      end = event.instance.vevent.dtend.value.astimezone(pytz.UTC)
+      start = event.instance.vevent.dtstart.value
+      end = event.instance.vevent.dtend.value
     else:
       start = event.instance.vevent.dtstart.value
       end = event.instance.vevent.dtend.value
