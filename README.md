@@ -1,6 +1,6 @@
 # twilio-caldav
 
-This is a dead simple [cherrypy](http://www.cherrypy.org) app that uses the [caldav](http://pypi.python.org/pypi/caldav) python library to decide who to forward voice and sms messages to based on calendar data.
+This is a stoopid simple [cherrypy](http://www.cherrypy.org) app that uses the [caldav](http://pypi.python.org/pypi/caldav) python library to decide who to forward voice and sms messages to based on calendar data.
 
 ## summary/usage
 
@@ -43,6 +43,8 @@ Create a file called `settings.py` in the root of your clone. It must contain th
 
     # the path to the python virtualenv for this app
     virtualenv_path = '/path/to/virtualenv'
+    # the timezone of your machine
+    timezone = 'America/Los_Angeles'
     # the url to your calendar. For zimbra, it looks something like:
     caldav_url = 'https://<username>:<password>@<zimbrahost>/dav/<zimbraemail>/<calendarname>'
     # the phone number to return when there are no events on the calendar for today
