@@ -42,7 +42,7 @@ If there are no calendar events for the day, the messages are forwarded to `defa
 Create a file called `settings.py` in the root of your clone. It must contain the following variables:
 
     # the path to the python virtualenv for this app
-    virtualenv_path = '/path/to/virtualenv'
+    virtualenv_path = '/path/to/virtualenv/lib/python2.6/site-packages'
     # the timezone of your machine
     timezone = 'America/Los_Angeles'
     # the url to your calendar. For zimbra, it looks something like:
