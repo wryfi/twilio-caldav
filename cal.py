@@ -1,5 +1,5 @@
 import caldav
-from datetime import date, datetime, time, timedelta
+from datetime import date, datetime, timedelta
 import pytz
 from settings import caldav_url as url, default_phone, default_name, timezone
 
@@ -23,13 +23,8 @@ def get_caldav_contact():
 
   for event in calendar.date_search(today, tomorrow):
     event.load()
-    if type(event.instance.vevent.dtstart.value) == datetime:
-      start = event.instance.vevent.dtstart.value
-      end = event.instance.vevent.dtend.value
-    else:
-      start = event.instance.vevent.dtstart.value
-      end = event.instance.vevent.dtend.value
-    eventdict = { 'start' : start, 'end': end, 'phone' : event.instance.vevent.location.value, 'name' : event.instance.vevent.summary.value }
+    eventdict = { 'start' : event.instance.vevent.dtstart.value, 'end': event.instance.vevent.dtend.value, \
+		  'phone' : event.instance.vevent.location.value, 'name' : event.instance.vevent.summary.value }
     if type(eventdict['start']) == datetime:
       events['partday'].append(eventdict)          
     elif type(eventdict['start']) == date:
