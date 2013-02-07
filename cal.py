@@ -21,7 +21,7 @@ def get_caldav_contact():
   now = pytz.timezone(timezone).localize(datetime.now())
   events = { 'allday' : [], 'partday': [] }
 
-  for event in calendar.date_search(today, tomorrow):
+  for event in calendar.date_search(today):
     event.load()
     eventdict = { 'start' : event.instance.vevent.dtstart.value, 'end': event.instance.vevent.dtend.value, \
 		  'phone' : event.instance.vevent.location.value, 'name' : event.instance.vevent.summary.value }
